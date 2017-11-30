@@ -36,8 +36,6 @@ Sample output after running the test.sh (on a linux system with docker installed
           '  |____| .__|_| |_|_| |_\__, | / / / /
          =========|_|==============|___/=/_/_/_/
          :: Spring Boot ::        (v1.2.5.RELEASE)
-
-        2017-11-30 15:43:43.196  INFO 1 --- [           main] hello.Application                        :        Starting Application v0.1.0 on a542630c3756 with PID 1      (/opt/run-java/gs-spring-boot-docker-0.1.0.jar started by demo in /opt/run-java)
-        ...
-        2017-11-30 15:43:45.072  INFO 1 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-        org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@59db867b:       startup date [Thu Nov 30 15:43:43 UTC 2017]
+        2017-11-30 15:57:13.311  INFO 1 --- [           main] hello.Application                        : Starting Application v0.1.0 on c1807e4fdea9 with PID 1         (/opt/run-java/gs-spring-boot-docker-0.1.0.jar started by demo in /opt/run-java)
+        2017-11-30 15:57:15.330  INFO 1 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)        ...
+        2017-11-30 15:57:15.331  INFO 1 --- [           main] hello.Application                        : Started Application in 2.218 seconds (JVM running for 2.504)
