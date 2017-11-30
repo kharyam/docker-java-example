@@ -8,7 +8,7 @@ This project provides a simplified example for creating a Java (JDK 8) base imag
 
 * The *app* directory Dockerfile builds from the base image to deploy a simple spring boot app, pulling it from github and building it from maven. 
 
-* The test.sh script builds both images, then runs the application image.  The command line used to run the app indicates the amount of memory compunted (256m) which honors the limit specified in the docker command line.  It is set to half of the memory allocated, calaculated heuristically by the script.  Once the app is up, it can be visited via http://localhost:8080 Details on the run-java.sh script can be found in it's GitHub repository:
+* The test.sh script builds both images, then runs the application image.  The command line used to run the app indicates the amount of memory computed (256m) which honors the limit specified in the docker command line (`docker run -it --rm --memory=512m -p 8080:8080 java-app:latest`).  It is set to half of the memory allocated, calculated heuristically by the script.  Once the app is up, it can be visited via http://localhost:8080 Details on the run-java.sh script can be found in it's GitHub repository:
 
     https://github.com/fabric8io-images/run-java-sh
 
@@ -16,7 +16,7 @@ This project provides a simplified example for creating a Java (JDK 8) base imag
 
 ## Example Output
 
-Sample output after running the test.sh (on a linux system with docker installed). Note the `-Xmx256m` parameter dynamically computed and passed to the JVM based on the container memory limit in the docker command (`docker run -it --rm --memory=512m -p 8080:8080 java-app:latest`)
+Sample output after running the test.sh (on a linux system with docker installed). Note the `-Xmx256m` parameter dynamically computed and passed to the JVM based on the container memory limit in the docker command.
 
         # ./test.sh
         Sending build context to Docker daemon  2.56 kB
