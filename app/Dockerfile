@@ -10,3 +10,5 @@ RUN cd ${BUILD_DIR}/test/test-app-maven && \
     mv target/*.jar $JAR_DIR && \
     rm -fr ~/.m2/repository/* && \
     rm -fr /tmp/s2i-java
+
+EXPOSE 8080
