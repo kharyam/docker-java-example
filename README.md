@@ -8,25 +8,28 @@ This project provides a simplified example for creating a Java (JDK 8) base imag
 
 * The *app* directory Dockerfile builds from the base image to deploy a simple spring boot app, pulling it from github and building it from maven. 
 
-* The test.sh script builds both images, then runs the application image.  The command line used to run the app indicates the amount of memory computed (256m) which honors the limit specified in the docker command line (`docker run -it --rm --memory=512m -p 8080:8080 java-app:latest`).  It is set to half of the memory allocated, calculated heuristically by the script.  Once the app is up, it can be visited via http://localhost:8080 Details on the run-java.sh script can be found in it's GitHub repository:
+* The test.sh script builds both images, then runs the application image.  The command line passed to the JVM indicates the amount of memory computed (256m) which honors the limit specified in the docker command line (`docker run -it --rm --memory=512m ...`).  It is set to half of the memory allocated, calculated heuristically by the run-java.sh script. The factor can be tuned via an environment variable, 50% is the default. Once the app is running, it can be visited via http://localhost:8080 Details on the run-java.sh script used to handle memory limits can be found in it's GitHub repository:
 
     https://github.com/fabric8io-images/run-java-sh
 
-    Several environment variables can be used to customize the behavior of the script, including the ability to pass in *JAVA_OPTIONS* to explicitly set JVM parameters.
+    Several other environment variables can be used to customize the behavior of the script, including the ability to pass in *JAVA_OPTIONS* to explicitly set JVM parameters.
 
 ## Example Output
 
-Sample output after running the test.sh (on a linux system with docker installed). Note the `-Xmx256m` parameter dynamically computed and passed to the JVM based on the container memory limit in the docker command.
+Sample output after running *test.sh* (on a linux system with docker installed). Note the `-Xmx256m` parameter was dynamically computed and passed to the JVM based on the container memory limit in the docker command.
 
         # ./test.sh
+        Bulding the base docker image...
         Sending build context to Docker daemon  2.56 kB
         Step 1/12 : FROM centos:centos7
         ...
         Successfully built dfac95c491c9
+        Building the application specific docker image...
         Sending build context to Docker daemon 2.048 kB
         Step 1/4 : FROM java-base:latest
         ...
         Successfully built 1e5a9c1d3a78
+        Running the application specific image...
         exec java -Xmx256m -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:        +ExitOnOutOfMemoryError -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -cp . -jar      /opt/run-java/gs-spring-boot-docker-0.1.0.jar
 
           .   ____          _            __ _ _
